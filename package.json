@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "schedule": "node schedule.js"
+    "schedule": "node schedule.js --enable-mail",
+    "dev": "node index.js --enable-mail --dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "nightmare": "^2.10.0",
     "node-schedule": "^1.2.3",
+    "nodemailer": "^4.0.1",
     "q": "^1.5.0"
   }
 }

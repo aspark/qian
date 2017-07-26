@@ -1,0 +1,12 @@
+{
+    "mail":{
+        "host": "smtp.example.com",
+        "port": 465,
+        "secure": true,
+        "from": "test@example.com",
+        "to":null,
+        "user":"admin",
+        "pwd":"pwd"
+    },
+    "changedReceivers":"admin@test.com"
+}

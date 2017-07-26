@@ -4,6 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const Q = require('q')
 const utils = require('./utils')
+const mail = require('./mail')
+const config = require('./config')
 
 const url = "https://qian.qq.com"
 
@@ -60,13 +62,21 @@ function analysis(result) {
         fnPrompt = function (o) { return `${o.name}(${o.prompt})` };
         if ((addedItems && addedItems.length) || (deletedItems && deletedItems.length)) {
             fs.appendFileSync(historyFileName, JSON.stringify(current) + '\r\n')//record changed
-            console.warn('deleted:', deletedItems.map(fnPrompt));//fnKey
-            console.warn('added:', addedItems.map(fnPrompt));
+            var msg = 'deleted: '+ deletedItems.map(fnPrompt).join(', ') +'\r\n';//fnKey
+            msg += 'added: '+ addedItems.map(fnPrompt).join(', ');
+            notify(msg);
         }
         else {
-            console.log('no changed')
+            notify('no changed');
         }
     })
+}
+
+function notify(msg){
+    console.log(msg);
+
+    mail.send(config.changedReceivers, 'qian monitor result', msg);
+
 }
 
 
