@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path')
 
 let configFileName = path.join(__dirname, 'qian.config');
-if (process.argv.indexOf('--dev')) {
+
+if (process.argv.indexOf('--dev')>0) {
     configFileName += '.dev';
 }
 configFileName += '.json'
